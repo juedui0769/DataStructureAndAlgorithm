@@ -3,6 +3,8 @@ package com.wxg.study.ch02;
 import java.awt.*;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 /**
  * 2019年3月26日22:44:19
@@ -30,6 +32,19 @@ public class AlgoVisualizer2_8 {
             frame = new AlgoFrame2_7("Welcome", sceneWidth, sceneHeight);
 
             frame.addKeyListener(new AlgoKeyListener2_9());
+//            frame.addMouseListener(new AlgoMouseListener2_10());
+
+            frame.getContentPane().addMouseListener(new MouseAdapter() {
+                @Override
+                public void mouseReleased(MouseEvent e) {
+//                    System.out.println(e.getPoint());
+                    for (Circle2_7 circle : circles) {
+                        if (circle.contain(e.getPoint())) {
+                            circle.isFilled = !circle.isFilled;
+                        }
+                    }
+                }
+            });
 
             // 不要阻塞事件分发线程 https://docs.oracle.com/javase/tutorial/uiswing/concurrency/dispatch.html
             Thread thread = new Thread(() -> {
@@ -68,12 +83,35 @@ public class AlgoVisualizer2_8 {
         }
     }
 
+    /**
+     * 键盘事件监听器
+     */
     private class AlgoKeyListener2_9 extends KeyAdapter {
         @Override
-        public void keyReleased(KeyEvent e) {
-            if (e.getKeyChar() == ' ') {
+        public void keyReleased(KeyEvent event) {
+            if (event.getKeyChar() == ' ') {
                 isAnimated = !isAnimated;
             }
+        }
+    }
+
+    /**
+     * 鼠标事件监听器
+     * <p>
+     * 没有使用，得到的`坐标值`不准确
+     * </p>
+     */
+    private class AlgoMouseListener2_10 extends MouseAdapter {
+        @Override
+        public void mousePressed(MouseEvent event) {
+            System.out.println(frame.getBounds());
+            System.out.println("x: " + event.getX());
+            System.out.println("y: " + event.getY());
+            System.out.println(event.getPoint());
+            System.out.println("---");
+            event.translatePoint(-(frame.getBounds().width - frame.getCanvasWidth())/2,
+                    -(frame.getBounds().height - frame.getCanvasHeight()));
+            System.out.println(event.getPoint());
         }
     }
 }
