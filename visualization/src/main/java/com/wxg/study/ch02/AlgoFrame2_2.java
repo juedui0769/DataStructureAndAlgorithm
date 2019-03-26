@@ -55,16 +55,20 @@ public class AlgoFrame2_2 extends JFrame {
 
             Graphics2D g2d = (Graphics2D) g;
 
-            int strokeWidth = 5;
-            g2d.setStroke(new BasicStroke(strokeWidth));
+//            int strokeWidth = 5;
+//            g2d.setStroke(new BasicStroke(strokeWidth));
+            AlgoVisHelper2_5.setStrokeWidth(g2d, 5);
 
-            g2d.setColor(Color.RED);
-            Ellipse2D circle = new Ellipse2D.Double(50, 50, 300, 300);
-            g2d.draw(circle);
+            AlgoVisHelper2_5.setColor(g2d, Color.BLUE);
+            AlgoVisHelper2_5.fillCircle(g2d, canvasWidth/2, canvasHeight/2, 200);
 
-            g2d.setColor(Color.BLUE);
-            Ellipse2D circle2 = new Ellipse2D.Double(50, 50, 300, 300);
-            g2d.fill(circle2);
+            // --- 先填充，再绘制外框 ---
+
+            AlgoVisHelper2_5.setColor(g2d, Color.RED);
+//            Ellipse2D circle = new Ellipse2D.Double(50, 50, 300, 300);
+//            g2d.draw(circle);
+            AlgoVisHelper2_5.strokeCircle(g2d, canvasWidth/2, canvasHeight/2, 200);
+
         }
 
         /**
