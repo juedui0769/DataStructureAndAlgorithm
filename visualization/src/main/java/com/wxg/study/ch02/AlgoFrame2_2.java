@@ -6,7 +6,8 @@ import java.awt.geom.Ellipse2D;
 
 /**
  * 2019年3月26日18:17:16 <p></p>
- * 抗锯齿参考: <a href="https://docs.oracle.com/javase/tutorial/2d/advanced/quality.html">oracle 2d advanced</a>
+ * 抗锯齿参考: <a href="https://docs.oracle.com/javase/tutorial/2d/advanced/quality.html">oracle 2d advanced</a> ,
+ * <a href="https://github.com/liuyubobobo/Play-with-Algorithm-Visualization/blob/master/02-Java-Swing-Basics/06-Advanced-Rendering/src/AlgoFrame.java">bobo老师的GitHub代码</a>
  */
 public class AlgoFrame2_2 extends JFrame {
 
@@ -71,9 +72,8 @@ public class AlgoFrame2_2 extends JFrame {
             RenderingHints hints
                     = new RenderingHints(RenderingHints.KEY_ANTIALIASING,
                     RenderingHints.VALUE_ANTIALIAS_ON);
+            g2d.addRenderingHints(hints);
 
-//            int strokeWidth = 5;
-//            g2d.setStroke(new BasicStroke(strokeWidth));
             AlgoVisHelper2_5.setStrokeWidth(g2d, 5);
 
             AlgoVisHelper2_5.setColor(g2d, Color.BLUE);
@@ -82,8 +82,6 @@ public class AlgoFrame2_2 extends JFrame {
             // --- 先填充，再绘制外框 ---
 
             AlgoVisHelper2_5.setColor(g2d, Color.RED);
-//            Ellipse2D circle = new Ellipse2D.Double(50, 50, 300, 300);
-//            g2d.draw(circle);
             AlgoVisHelper2_5.strokeCircle(g2d, canvasWidth/2, canvasHeight/2, 200);
 
         }
