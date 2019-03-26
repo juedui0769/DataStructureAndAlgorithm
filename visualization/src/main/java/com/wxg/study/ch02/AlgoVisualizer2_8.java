@@ -1,6 +1,8 @@
 package com.wxg.study.ch02;
 
 import java.awt.*;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 /**
  * 2019年3月26日22:44:19
@@ -10,6 +12,8 @@ public class AlgoVisualizer2_8 {
 
     private Circle2_7[] circles;
     private AlgoFrame2_7 frame;
+
+    private boolean isAnimated = true;
 
     public AlgoVisualizer2_8(int sceneWidth, int sceneHeight, int N) {
         circles = new Circle2_7[N];
@@ -25,6 +29,8 @@ public class AlgoVisualizer2_8 {
         EventQueue.invokeLater(() -> {
             frame = new AlgoFrame2_7("Welcome", sceneWidth, sceneHeight);
 
+            frame.addKeyListener(new AlgoKeyListener2_9());
+
             // 不要阻塞事件分发线程 https://docs.oracle.com/javase/tutorial/uiswing/concurrency/dispatch.html
             Thread thread = new Thread(() -> {
                 run();
@@ -33,6 +39,15 @@ public class AlgoVisualizer2_8 {
             thread.start();
 
         });
+    }
+
+    public static void main(String[] args) {
+        int sceneWidth = 800;
+        int sceneHeight = 800;
+
+        int N = 10;
+
+        new AlgoVisualizer2_8(sceneWidth, sceneHeight, N);
     }
 
     /**
@@ -45,10 +60,20 @@ public class AlgoVisualizer2_8 {
             AlgoVisHelper2_5.pause(20);
 
             // 更新数据
-            for (Circle2_7 circle : circles) {
-                circle.move(0, 0, frame.getCanvasWidth(), frame.getCanvasHeight());
+            if (isAnimated) {
+                for (Circle2_7 circle : circles) {
+                    circle.move(0, 0, frame.getCanvasWidth(), frame.getCanvasHeight());
+                }
             }
+        }
+    }
 
+    private class AlgoKeyListener2_9 extends KeyAdapter {
+        @Override
+        public void keyReleased(KeyEvent e) {
+            if (e.getKeyChar() == ' ') {
+                isAnimated = !isAnimated;
+            }
         }
     }
 }
