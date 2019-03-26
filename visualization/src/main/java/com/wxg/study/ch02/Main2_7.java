@@ -28,7 +28,7 @@ public class Main2_7 {
             AlgoFrame2_7 frame = new AlgoFrame2_7("Welcome", sceneWidth, sceneHeight);
 
             // 不要阻塞事件分发线程 https://docs.oracle.com/javase/tutorial/uiswing/concurrency/dispatch.html
-            new Thread(() -> {
+            Thread thread = new Thread(() -> {
                 while (true) {
                     // 绘制数据
                     frame.render(circles);
@@ -40,7 +40,9 @@ public class Main2_7 {
                     }
 
                 }
-            }).start();
+            });
+            thread.setDaemon(true);
+            thread.start();
 
         });
     }
