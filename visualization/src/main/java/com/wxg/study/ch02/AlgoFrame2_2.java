@@ -6,6 +6,7 @@ import java.awt.geom.Ellipse2D;
 
 /**
  * 2019年3月26日18:17:16 <p></p>
+ * 抗锯齿参考: <a href="https://docs.oracle.com/javase/tutorial/2d/advanced/quality.html">oracle 2d advanced</a>
  */
 public class AlgoFrame2_2 extends JFrame {
 
@@ -45,7 +46,17 @@ public class AlgoFrame2_2 extends JFrame {
         return canvasHeight;
     }
 
+    /**
+     * 双缓存 : {@link JPanel} 默认就是开启双缓存的，
+     * 这里特意的定义在这里，只是为了强调！
+     */
+    private boolean isDoubleBuffered = true;
+
     private class AlgoCanvas2_3 extends JPanel {
+
+        public AlgoCanvas2_3() {
+            super(isDoubleBuffered);
+        }
 
         @Override
         protected void paintComponent(Graphics g) {
@@ -54,6 +65,12 @@ public class AlgoFrame2_2 extends JFrame {
             // g.drawOval(50, 50, 300, 300);  // 绘制圆
 
             Graphics2D g2d = (Graphics2D) g;
+
+            // https://docs.oracle.com/javase/tutorial/2d/advanced/quality.html
+            // 抗锯齿
+            RenderingHints hints
+                    = new RenderingHints(RenderingHints.KEY_ANTIALIASING,
+                    RenderingHints.VALUE_ANTIALIAS_ON);
 
 //            int strokeWidth = 5;
 //            g2d.setStroke(new BasicStroke(strokeWidth));
@@ -74,7 +91,7 @@ public class AlgoFrame2_2 extends JFrame {
         /**
          * 视频中，老师先演示了外部设置`setPreferredSize`的方式，
          * 接着使用覆盖父类方法的方式，来设置画布的大小，
-         * 以遵循“谁的事儿谁自己做主的原则”
+         * 以遵循“谁的事儿谁做主的原则”
          * @return
          */
         @Override
