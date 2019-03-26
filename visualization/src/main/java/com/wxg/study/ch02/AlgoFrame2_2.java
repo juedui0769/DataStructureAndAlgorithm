@@ -2,6 +2,7 @@ package com.wxg.study.ch02;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.geom.Ellipse2D;
 
 /**
  * 2019年3月26日18:17:16 <p></p>
@@ -50,7 +51,20 @@ public class AlgoFrame2_2 extends JFrame {
         protected void paintComponent(Graphics g) {
             super.paintComponent(g);
 
-            g.drawOval(50, 50, 300, 300);
+            // g.drawOval(50, 50, 300, 300);  // 绘制圆
+
+            Graphics2D g2d = (Graphics2D) g;
+
+            int strokeWidth = 10;
+            g2d.setStroke(new BasicStroke(strokeWidth));
+
+            g2d.setColor(Color.RED);
+            Ellipse2D circle = new Ellipse2D.Double(50.2, 50, 300, 300);
+            g2d.draw(circle);
+
+            g2d.setColor(Color.BLACK);
+            Ellipse2D circle2 = new Ellipse2D.Double(60, 60, 280, 280);
+            g2d.fill(circle2);
         }
 
         /**
