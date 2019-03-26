@@ -8,7 +8,8 @@ import java.awt.*;
 public class Main2_2 {
     public static void main(String[] args) {
         EventQueue.invokeLater(() -> {
-            new AlgoFrame2_2("Welcome");
+//            new AlgoFrame2_2("Welcome");
+            new AlgoFrame2_2("Welcome", 500, 500);
         });
     }
 }
