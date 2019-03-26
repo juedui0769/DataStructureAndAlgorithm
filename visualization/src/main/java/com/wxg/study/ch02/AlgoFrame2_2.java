@@ -55,15 +55,15 @@ public class AlgoFrame2_2 extends JFrame {
 
             Graphics2D g2d = (Graphics2D) g;
 
-            int strokeWidth = 10;
+            int strokeWidth = 5;
             g2d.setStroke(new BasicStroke(strokeWidth));
 
             g2d.setColor(Color.RED);
-            Ellipse2D circle = new Ellipse2D.Double(50.2, 50, 300, 300);
+            Ellipse2D circle = new Ellipse2D.Double(50, 50, 300, 300);
             g2d.draw(circle);
 
-            g2d.setColor(Color.BLACK);
-            Ellipse2D circle2 = new Ellipse2D.Double(60, 60, 280, 280);
+            g2d.setColor(Color.BLUE);
+            Ellipse2D circle2 = new Ellipse2D.Double(50, 50, 300, 300);
             g2d.fill(circle2);
         }
 
