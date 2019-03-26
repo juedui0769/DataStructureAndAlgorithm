@@ -2,28 +2,19 @@ package com.wxg.study.ch02;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.geom.Ellipse2D;
 
-/**
- * 2019年3月26日18:17:16 <p></p>
- * 抗锯齿参考: <a href="https://docs.oracle.com/javase/tutorial/2d/advanced/quality.html">oracle 2d advanced</a>
- * <a href="https://github.com/liuyubobobo/Play-with-Algorithm-Visualization/blob/master/02-Java-Swing-Basics/06-Advanced-Rendering/src/AlgoFrame.java">bobo老师的GitHub代码</a>
- */
-public class AlgoFrame2_2 extends JFrame {
+public class AlgoFrame2_7 extends JFrame {
 
     private int canvasWidth;
     private int canvasHeight;
 
-    public AlgoFrame2_2(String title, int canvasWidth, int canvasHeight) {
+    public AlgoFrame2_7(String title, int canvasWidth, int canvasHeight) {
         super(title);
 
         this.canvasHeight = canvasHeight;
         this.canvasWidth = canvasWidth;
 
-//        setSize(canvasWidth, canvasHeight);
-        AlgoCanvas2_3 canvas = new AlgoCanvas2_3();
-        // canvas.setSize(new Dimension(canvasWidth, canvasHeight));
-        // canvas.setPreferredSize(new Dimension(canvasWidth, canvasHeight));
+        AlgoCanvas2_7 canvas = new AlgoCanvas2_7();
         setContentPane(canvas);
         pack();
 
@@ -33,7 +24,7 @@ public class AlgoFrame2_2 extends JFrame {
         setVisible(true);
     }
 
-    public AlgoFrame2_2(String title) {
+    public AlgoFrame2_7(String title) {
         this(title, 1024, 768);
     }
 
@@ -45,15 +36,22 @@ public class AlgoFrame2_2 extends JFrame {
         return canvasHeight;
     }
 
+    private Circle2_7[] circles;
+
+    public void render(Circle2_7[] circles) {
+        this.circles = circles;
+        repaint();
+    }
+
     /**
      * 双缓存 : {@link JPanel} 默认就是开启双缓存的，
      * 这里特意的定义在这里，只是为了强调！
      */
     private boolean isDoubleBuffered = true;
 
-    private class AlgoCanvas2_3 extends JPanel {
+    private class AlgoCanvas2_7 extends JPanel {
 
-        public AlgoCanvas2_3() {
+        public AlgoCanvas2_7() {
             super(isDoubleBuffered);
         }
 
@@ -72,16 +70,11 @@ public class AlgoFrame2_2 extends JFrame {
                     RenderingHints.VALUE_ANTIALIAS_ON);
             g2d.addRenderingHints(hints);
 
-            AlgoVisHelper2_5.setStrokeWidth(g2d, 5);
-
-            AlgoVisHelper2_5.setColor(g2d, Color.BLUE);
-            AlgoVisHelper2_5.fillCircle(g2d, canvasWidth/2, canvasHeight/2, 200);
-
-            // --- 先填充，再绘制外框 ---
-
+            AlgoVisHelper2_5.setStrokeWidth(g2d, 1);
             AlgoVisHelper2_5.setColor(g2d, Color.RED);
-            AlgoVisHelper2_5.strokeCircle(g2d, canvasWidth/2, canvasHeight/2, 200);
-
+            for (Circle2_7 circle : circles) {
+                AlgoVisHelper2_5.strokeCircle(g2d, circle.x, circle.y, circle.getR());
+            }
         }
 
         /**
