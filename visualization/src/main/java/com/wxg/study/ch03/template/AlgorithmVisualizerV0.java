@@ -6,13 +6,13 @@ import java.awt.*;
 /**
  * create at 2019年3月29日03:35:56
  */
-public abstract class AlgorithmVisualizer {
+public abstract class AlgorithmVisualizerV0 {
 
     private AlgorithmConfig config;
 
     private JFrame frame;
 
-    public AlgorithmVisualizer(AlgorithmConfig config) {
+    public AlgorithmVisualizerV0(AlgorithmConfig config) {
         this.config = config;
 
         // 初始化数据

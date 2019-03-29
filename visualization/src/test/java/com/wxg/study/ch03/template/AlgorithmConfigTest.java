@@ -12,24 +12,23 @@ import static org.junit.Assert.*;
 public class AlgorithmConfigTest {
 
     private static int _width = 1000;
-    private static int _heith = 500;
+    private static int _height = 500;
 
     @Test
     public void test01() {
         AlgorithmConfig conf = new AlgorithmConfig();
         conf.title("Welcome")
                 .width(_width)
-                .height(_heith)
-                .canvas(new DefaultCanvas(conf));
-        conf = null;
+                .height(_height)
+                .canvas(new DefaultCanvasV0(conf));
     }
 
-    private static class DefaultCanvas extends AlgorithmCanvas {
-        public DefaultCanvas(AlgorithmConfig config) {
+    private static class DefaultCanvasV0 extends AlgorithmCanvasV0 {
+        public DefaultCanvasV0(AlgorithmConfig config) {
             super(config);
             System.out.println(config.width() + ", " + config.height());
             assertEquals(_width, config.width());
-            assertEquals(_heith, config.height());
+            assertEquals(_height, config.height());
         }
         @Override
         protected void doPaint(Graphics2D g) {

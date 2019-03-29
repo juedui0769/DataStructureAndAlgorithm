@@ -6,11 +6,11 @@ import java.awt.*;
 /**
  * create at 2019年3月29日03:35:23
  */
-public abstract class AlgorithmCanvas extends JPanel {
+public abstract class AlgorithmCanvasV0 extends JPanel {
 
     private AlgorithmConfig config;
 
-    public AlgorithmCanvas(AlgorithmConfig config) {
+    public AlgorithmCanvasV0(AlgorithmConfig config) {
         // 双缓存
         super(true);
         this.config = config;

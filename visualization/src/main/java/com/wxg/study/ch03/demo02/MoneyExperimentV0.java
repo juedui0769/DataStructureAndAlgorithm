@@ -1,16 +1,16 @@
 package com.wxg.study.ch03.demo02;
 
 import com.wxg.study.ch02.template.AlgoVisHelper;
-import com.wxg.study.ch03.template.AlgorithmCanvas;
+import com.wxg.study.ch03.template.AlgorithmCanvasV0;
 import com.wxg.study.ch03.template.AlgorithmConfig;
-import com.wxg.study.ch03.template.AlgorithmVisualizer;
+import com.wxg.study.ch03.template.AlgorithmVisualizerV0;
 
 import java.awt.*;
 
 /**
  * create at 2019年3月29日03:34:46
  */
-public class MoneyExperimentV0 extends AlgorithmVisualizer {
+public class MoneyExperimentV0 extends AlgorithmVisualizerV0 {
 
     /**
      * 这个参数应该放到配置类中的
@@ -54,16 +54,16 @@ public class MoneyExperimentV0 extends AlgorithmVisualizer {
         conf.title("Welcome")
                 .width(1000)
                 .height(500)
-                .canvas(new DefaultCanvas(conf));
+                .canvas(new DefaultCanvasV0(conf));
 
         new MoneyExperimentV0(conf);
     }
 
-    private static class DefaultCanvas extends AlgorithmCanvas {
+    private static class DefaultCanvasV0 extends AlgorithmCanvasV0 {
 
         private AlgorithmConfig config;
 
-        public DefaultCanvas(AlgorithmConfig config) {
+        public DefaultCanvasV0(AlgorithmConfig config) {
             super(config);
             this.config = config;
         }

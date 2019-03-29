@@ -13,7 +13,7 @@ public class AlgorithmConfig {
     private int canvasWidth;
     private int canvasHeight;
 
-    private AlgorithmCanvas canvas;
+    private AlgorithmCanvasV0 canvas;
 
     public AlgorithmConfig title(String title) {
         this.title = title;
@@ -42,12 +42,12 @@ public class AlgorithmConfig {
         return canvasHeight;
     }
 
-    public AlgorithmConfig canvas(AlgorithmCanvas canvas) {
+    public AlgorithmConfig canvas(AlgorithmCanvasV0 canvas) {
         this.canvas = canvas;
         return this;
     }
 
-    public AlgorithmCanvas canvas() {
+    public AlgorithmCanvasV0 canvas() {
         return canvas;
     }
 }
