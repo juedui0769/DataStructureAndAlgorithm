@@ -1,5 +1,7 @@
 package com.wxg.study.ch03.template;
 
+import javax.swing.*;
+
 /**
  * create at 2019年3月29日03:35:40
  */
@@ -13,7 +15,7 @@ public class AlgorithmConfig {
     private int canvasWidth;
     private int canvasHeight;
 
-    private AlgorithmCanvasV0 canvas;
+    private JPanel canvas;
 
     public AlgorithmConfig title(String title) {
         this.title = title;
@@ -42,12 +44,12 @@ public class AlgorithmConfig {
         return canvasHeight;
     }
 
-    public AlgorithmConfig canvas(AlgorithmCanvasV0 canvas) {
+    public AlgorithmConfig canvas(JPanel canvas) {
         this.canvas = canvas;
         return this;
     }
 
-    public AlgorithmCanvasV0 canvas() {
+    public JPanel canvas() {
         return canvas;
     }
 }

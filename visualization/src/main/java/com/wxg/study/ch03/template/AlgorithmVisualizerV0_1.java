@@ -4,24 +4,31 @@ import javax.swing.*;
 import java.awt.*;
 
 /**
- * create at 2019年3月29日03:35:56
+ * create at 2019年03月29日16:24:39
  */
-@Deprecated
-public abstract class AlgorithmVisualizerV0 {
+public abstract class AlgorithmVisualizerV0_1 {
 
     private AlgorithmConfig config;
 
     private JFrame frame;
 
-    public AlgorithmVisualizerV0(AlgorithmConfig config) {
-        this.config = config;
+    /**
+     * 提供无参构造方法方便子类继承，
+     * 必须调用 {@link #setConfig(AlgorithmConfig)} 方法设置 {@link AlgorithmConfig},
+     * 调用 {@link #start()} 启动。
+     */
+    public AlgorithmVisualizerV0_1() {}
+
+    public void start() {
+        if (config == null) {
+            throw new RuntimeException("config == null, 请调用`setConfig(AlgorithmConfig)`方法设置必要的属性!");
+        }
 
         // 初始化数据
         init();
 
         // 初始化视图
         EventQueue.invokeLater(() -> {
-            // AlgorithmFrame frame = new AlgorithmFrame(config);
             frame = new DefaultFrame(config);
             Thread thread = new Thread(() -> {
                 doRun();
@@ -47,12 +54,21 @@ public abstract class AlgorithmVisualizerV0 {
         frame.repaint();
     }
 
+    public AlgorithmVisualizerV0_1 setConfig(AlgorithmConfig config) {
+        this.config = config;
+        return this;
+    }
+
     private static class DefaultFrame extends JFrame {
 
         public DefaultFrame(AlgorithmConfig config) {
             super(config.title());
 
-            setContentPane(config.canvas());
+            // Add at 2019年03月29日15:22:34，这里获取`config`对象比较方便，在这里设置size更简单。
+            JPanel canvas = config.canvas();
+            canvas.setPreferredSize(new Dimension(config.width(), config.height()));
+            // setContentPane(config.canvas());
+            setContentPane(canvas);
 
             setResizable(false);
             pack();
